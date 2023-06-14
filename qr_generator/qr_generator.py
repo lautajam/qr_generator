@@ -1,8 +1,6 @@
 import qrcode as qr
 import os, time
 
-text_qr, name_img, folder, extension, go = "", "", "img_test", ".jpg", True
-
 # Ask for name and link/text and validate data
 def input_data(text_qr, name_img):
         
@@ -58,8 +56,5 @@ def create_qr (text_qr, name_img, folder, extension, go):
           go = validate_creation(folder, name_img, extension, go)
       except:
           print("An exception occurred")
-
-# Main
-print("Hello! Welcome to link/text convert to QRcode")
-
-create_qr(text_qr, name_img, folder, extension, go)
+  print("QR successfully created")
+  go = True
