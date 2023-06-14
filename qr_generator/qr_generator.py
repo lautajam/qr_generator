@@ -44,21 +44,22 @@ def input_data(text_qr, name_img):
 def validate_creation(folder, name_img, extension, go):
         time.sleep(0.1)
         ruta_archivo = os.path.join(folder, name_img + extension)
-        if os.path.exists(ruta_archivo):
-            go = False
-        else:
-            True
+        go = False if os.path.exists(ruta_archivo) else True
         return go
+
+# Create the qr, create the save path and call the validate function
+def create_qr (text_qr, name_img, folder, extension, go):
+  while go:
+      try:
+          text_qr, name_img = input_data(text_qr, name_img)
+          img = qr.make(text_qr)
+          path = folder + "/" + name_img + extension
+          img.save(path)
+          go = validate_creation(folder, name_img, extension, go)
+      except:
+          print("An exception occurred")
 
 # Main
 print("Hello! Welcome to link/text convert to QRcode")
 
-while go:
-    try:
-        text_qr, name_img = input_data(text_qr, name_img)
-        img = qr.make(text_qr)
-        path = folder + "/" + name_img + extension
-        img.save(path)
-        go = validate_creation(folder, name_img, extension, go)
-    except:
-        print("An exception occurred")
+create_qr(text_qr, name_img, folder, extension, go)
