@@ -1,2 +1,2 @@
-img_test
+qr_generator\QR_folder
 .jpg

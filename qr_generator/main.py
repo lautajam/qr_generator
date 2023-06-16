@@ -7,7 +7,7 @@ exts_img = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.tiff']
 # Call the create_qr, change the path to save the image and change the image extension
 def menu(go, extension, folder, menu_var):
 
-    if menu_var.lower() == "x":
+    if menu_var == "*":
         go = False
 
     # Create the QR
@@ -17,9 +17,11 @@ def menu(go, extension, folder, menu_var):
     # Check if the folder exist and change the path to save the image
     elif menu_var == "2":
         while go:
+            print("Your path now is: '" + folder + "'")
+            print("If you want out, type *")
             print("Please, type in the path to save the image")
             folder = input("--> ")
-            if os.path.exists(folder) == False:
+            if os.path.exists(folder) == False and folder != "*":
                 print("Folder doesn´t exist, plase try again.")
             else:
                 go = False
@@ -35,9 +37,11 @@ def menu(go, extension, folder, menu_var):
                 else:
                     exten += ext
             print("(Valid extensions:", exten + ")")
+            print("Your extension now is: '" + extension + "'")
+            print("If you want out, type *")
             print("Please, write a image extension valid:")
             extension = input("--> ")
-            if extension not in exts_img:
+            if extension not in exts_img and extension != "*":
                 print("The extension is invalid, plase try again.")
             else:
                 go = False
@@ -46,32 +50,47 @@ def menu(go, extension, folder, menu_var):
     return go, extension, folder
 
 # Checks if the file data.txt exists, if it exists it opens and reads it, if it does not exist it creates it.
-def search_data(): 
+def search_data():
+    folder = ""
+    extension = ""
     if os.path.exists("qr_generator\data.txt"):
         file_data = open("qr_generator\data.txt", "r+")
         lines = file_data.readlines()
         lines = [elemento.strip('\n') for elemento in lines]
+        if lines[0] in exts_img:
+            folder = lines[1]
+            extension = lines[0]
+        else:
+            folder = lines[0]
+            extension = lines[1]
+        print(lines)
     else:
-        file_data = open("data.txt", "w")
-        print("no existe")
+        file_data = open("qr_generator\data.txt", "w")
+        if os.path.exists("qr_generator\QR_folder"):
+            folder = "QR_folder"
+        else:
+            os.mkdir('qr_generator\QR_folder')
+            folder = "qr_generator\QR_folder"
+        extension = ".jpg"
+        file_data.writelines(folder + "\n" + extension)
+        print("Does'nt exist")
     
-    return 1, 2
+    return folder, extension
     
 
 #  MAIN
 
 folder, extension = search_data()
-
 print(folder, extension)
 
-# print("Hello! Welcome to link/text convert to QRcode")
+print("Hello! Welcome to link/text convert to QRcode")
 
-# while go:
-#     print("If you want create a QR, type 1")
-#     print("If you want change the save path, type 2")
-#     print("If you want change the image extension, type 3")
-#     print("If you want out, type X")
-#     menu_var = input("--> ")
-#     go, extension, folder = menu(go, extension, folder, menu_var)
+while go:
+    print("If you want create a QR, type 1")
+    print("If you want change the save path, type 2")
+    print("If you want change the image extension, type 3")
+    print("If you want out, type *")
+    menu_var = input("--> ")
+    go, extension, folder = menu(go, extension, folder, menu_var)
 
-# print("Thanks for ussing, see you latter.")
+print("Thanks for ussing, see you latter.")
