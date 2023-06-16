@@ -25,6 +25,7 @@ def input_data(text_qr, name_img):
         print("Type here your name that you want to named the QRcode:")
         name_img = input("--> ")
 
+        # Validates that the data entered does not exceed the allowed limit
         if len(name_img) > max_charname:
             print("The name exceeds the limit, please write a name of less than 255 characters.")
             while go:
@@ -41,7 +42,7 @@ def input_data(text_qr, name_img):
 # Check that the file has been created
 def validate_creation(folder, name_img, extension, go):
         time.sleep(0.1)
-        ruta_archivo = os.path.join(folder, name_img + extension)
+        ruta_archivo = os.path.join(folder, name_img + "." + extension)
         go = False if os.path.exists(ruta_archivo) else True
         return go
 
@@ -51,7 +52,7 @@ def create_qr (text_qr, name_img, folder, extension, go):
       try:
           text_qr, name_img = input_data(text_qr, name_img)
           img = qr.make(text_qr)
-          path = folder + "/" + name_img + extension
+          path = folder + "/" + name_img +  "." + extension
           img.save(path)
           go = validate_creation(folder, name_img, extension, go)
       except:

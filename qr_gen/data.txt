@@ -1,0 +1,2 @@
+qr_gen\QR_folder
+jpg

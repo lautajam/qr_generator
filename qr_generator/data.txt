@@ -1,2 +1,0 @@
-qr_generator\QR_folder
-.jpg

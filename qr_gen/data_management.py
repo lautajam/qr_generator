@@ -1,19 +1,18 @@
 from qr_generator import create_qr
 import os
 
-text_qr, name_img, menu_var, go = "", "", "", True
 exts_img = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'tiff']
 
 # Reads the data.txt and extract the data it contains
 def file_lecture ():
-    file_data = open("qr_generator\data.txt", "r+")
+    file_data = open("qr_gen\data.txt", "r+")
     lines = file_data.readlines()
     file_data.close()
     lines = [elemento.strip('\n') for elemento in lines]
     return lines
 
 # Call the create_qr, change the path to save the image and change the image extension
-def menu(go, extension, folder, menu_var):
+def menu(go, extension, folder, menu_var, text_qr, name_img):
 
     if menu_var == "*":
         go = False
@@ -31,7 +30,7 @@ def menu(go, extension, folder, menu_var):
             folder = input("--> ")
             # Check if the folder isn't exist, in this case, the folder is the saved one.
             if os.path.exists(folder) == False and folder != "*":
-                print("Folder doesn´t exist, plase try again.")
+                print("Folder doesn't exist, plase try again.")
                 folder = file_lecture()[0]
             # Checks if the folder exists, in this case, the extension is the one typed in
             elif os.path.exists(folder) == True and folder != "*":
@@ -41,8 +40,8 @@ def menu(go, extension, folder, menu_var):
                     lines[1] = folder
                 else:
                     lines[0] = folder
-                file_data = open("qr_generator\data.txt", "w")
-                file_data.writelines(folder + "\n" + "." + extension)
+                file_data = open("qr_gen\data.txt", "w")
+                file_data.writelines(folder + "\n" + extension)
                 file_data.close()
                 go = False
             # Check if * was typed, if so, exit
@@ -79,8 +78,8 @@ def menu(go, extension, folder, menu_var):
                     lines[0] = extension
                 else:
                     lines[1] = extension
-                file_data = open("qr_generator\data.txt", "w")
-                file_data.writelines(folder + "\n" + "." + extension)
+                file_data = open("qr_gen\data.txt", "w")
+                file_data.writelines(folder + "\n" + extension)
                 file_data.close()
                 go = False
             # Check if * was typed, if so, exit
@@ -98,9 +97,16 @@ def menu(go, extension, folder, menu_var):
 # Checks if the file data.txt exists, if it exists it opens and reads it, if it does not exist it creates it.
 def search_data():
     folder = ""
-    extension = ""
+    extension = "jpg"
+    # Check if the QR_folder folder exists
+    if os.path.exists("qr_gen\QR_folder"):
+        folder = "qr_gen\QR_folder"
+    # If QR_folder doesn't exists, creates it
+    else:
+        os.mkdir('qr_gen\QR_folder')
+        folder = "qr_gen\QR_folder"
     # Check if the data.txt file exists
-    if os.path.exists("qr_generator\data.txt"):
+    if os.path.exists("qr_gen\data.txt"):
         lines = file_lecture()
         # Check the extension and folder position in txt
         if lines[0] in exts_img:
@@ -109,34 +115,10 @@ def search_data():
         else:
             folder = lines[0]
             extension = lines[1]
-        print(lines)
     # If data.txt doesn't exists, creates it
     else:
-        file_data = open("qr_generator\data.txt", "w")
-    # ACA SIGO
-    if os.path.exists("qr_generator\QR_folder"):
-        folder = "QR_folder"
-    else:
-        os.mkdir('qr_generator\QR_folder')
-        folder = "qr_generator\QR_folder"
-    extension = ".jpg"
-    file_data.writelines(folder + "\n" + extension)
-    file_data.close()
+        file_data = open("qr_gen\data.txt", "w")
+        file_data.writelines(folder + "\n" + extension)
+        file_data.close()
     
     return folder, extension
-    
-#  MAIN
-
-folder, extension = search_data()
-
-print("Hello! Welcome to link/text convert to QRcode")
-
-while go:
-    print("If you want create a QR, type 1")
-    print("If you want change the save path, type 2")
-    print("If you want change the image extension, type 3")
-    print("If you want out, type *")
-    menu_var = input("--> ")
-    go, extension, folder = menu(go, extension, folder, menu_var)
-
-print("Thanks for ussing, see you latter.")
