@@ -1,10 +1,8 @@
 from qr_generator import create_qr
 import os
 
-text_qr, name_img, folder, extension, menu_var, go = "", "", "img_test", ".jpg", "", True
+text_qr, name_img, menu_var, go = "", "", "", True
 exts_img = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.tiff']
-
-print("Hello! Welcome to link/text convert to QRcode")
 
 # Call the create_qr, change the path to save the image and change the image extension
 def menu(go, extension, folder, menu_var):
@@ -47,12 +45,33 @@ def menu(go, extension, folder, menu_var):
 
     return go, extension, folder
 
-while go:
-    print("If you want create a QR, type 1")
-    print("If you want change the save path, type 2")
-    print("If you want change the image extension, type 3")
-    print("If you want out, type X")
-    menu_var = input("--> ")
-    go, extension, folder = menu(go, extension, folder, menu_var)
+# Checks if the file data.txt exists, if it exists it opens and reads it, if it does not exist it creates it.
+def search_data(): 
+    if os.path.exists("qr_generator\data.txt"):
+        file_data = open("qr_generator\data.txt", "r+")
+        lines = file_data.readlines()
+        lines = [elemento.strip('\n') for elemento in lines]
+    else:
+        file_data = open("data.txt", "w")
+        print("no existe")
+    
+    return 1, 2
+    
 
-print("Thanks for ussing, see you latter.")
+#  MAIN
+
+folder, extension = search_data()
+
+print(folder, extension)
+
+# print("Hello! Welcome to link/text convert to QRcode")
+
+# while go:
+#     print("If you want create a QR, type 1")
+#     print("If you want change the save path, type 2")
+#     print("If you want change the image extension, type 3")
+#     print("If you want out, type X")
+#     menu_var = input("--> ")
+#     go, extension, folder = menu(go, extension, folder, menu_var)
+
+# print("Thanks for ussing, see you latter.")

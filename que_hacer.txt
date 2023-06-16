@@ -1,13 +1,18 @@
 Ahora falta:
 
-    Hacer un menú donde el usuario pueda elegir (lógica):
+    {
+        Hacer un menú donde el usuario pueda elegir (lógica):
         Si cambiar el destino de la carpeta/extension
             Puede cambiar el destino de la carpeta como volver al menó
             Puede cambiar la extension como volver al menó
         Si hacer el qr
             Puede generar los QR que quiera como volver al menú
         Si salir del programa
+    } HECHO
 
+    Hacer un txt donde esté la extension y la carpeta guardadas, para que siempre sean las mismas a menos que cambien
+    Que en el apartado cambiar carpeta y cambiar extension muestre cual es la extension y cuale s la carpeta actual
+    
     Hacer interfaz gráfica:
         Menú
             Crear qr
@@ -24,4 +29,5 @@ Ahora falta:
     Adicional:
         Crear un csv donde se tengan todos los links/textos con los nombres dados al archivo
             nombre_archivo;link/texto
+
     
