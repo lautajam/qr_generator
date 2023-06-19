@@ -27,11 +27,19 @@ def exit_app():
 def back_to_main_frame(frame):
     frame.pack_forget()
     main_frame.pack()
+    print("Back to main menu")
+
+# Prints on console the content and the name of the qr entered.
+def submit():
+    content_qr = content_qr_entry.get()
+    print("QR content:", content_qr)
+    name_qr = name_qr_entry.get()
+    print("QR name:", name_qr)
 
 # Creates the main window
 root = tk.Tk()
 root.title("Qr Generator")
-root.geometry("300x200")
+root.geometry("700x300")
 
 # Creates the main frame
 main_frame = tk.Frame(root)
@@ -60,13 +68,28 @@ exit_app_btn.pack()
 #
 # 
 # Creates the QR_gen_frame frame
+
 QR_gen_frame = tk.Frame(root)
 
 QR_gen_frame_label = tk.Label(QR_gen_frame, text="This is the QR_gen screen.")
 QR_gen_frame_label.pack()
 
+content_qr_label = tk.Label(QR_gen_frame, text="The link/text exceeds the limit, please write a link/text of less than 2953 characters.")
+content_qr_label.pack()
+content_qr_entry = tk.Entry(QR_gen_frame)
+content_qr_entry.pack()
+
+name_qr_label = tk.Label(QR_gen_frame, text="Type here your name that you want to named the QRcode:")
+name_qr_label.pack()
+name_qr_entry = tk.Entry(QR_gen_frame)
+name_qr_entry.pack()
+
+create_qr_bt = tk.Button(QR_gen_frame, text="Create Qr code", command=submit)
+create_qr_bt.pack()
+
 QR_gen_frame_button = tk.Button(QR_gen_frame, text="Back", command=lambda: back_to_main_frame(QR_gen_frame))
 QR_gen_frame_button.pack()
+
 
 # Creates the QR_gen_frame frame
 save_path_frame = tk.Frame(root)
