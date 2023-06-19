@@ -27,9 +27,3 @@ Ahora falta:
     Juntar interfaz gráfica y lógica
 
     Hacer el ejecutable
-
-    Adicional:
-        Crear un csv donde se tengan todos los links/textos con los nombres dados al archivo
-            nombre_archivo;link/texto
-
-    
