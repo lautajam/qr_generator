@@ -11,6 +11,7 @@ def extension():
 
 def exit_app():
     print("You left.")
+    root.quit()
 
 # Creates the window
 root = tk.Tk()
