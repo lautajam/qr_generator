@@ -11,19 +11,22 @@ Ahora falta:
 
     Hacer un txt donde esté la extension y la carpeta guardadas, para que siempre sean las mismas a menos que cambien
     Que en el apartado cambiar carpeta y cambiar extension muestre cual es la extension y cual es la carpeta actual
-    } HECHO
     
     Hacer interfaz gráfica:
         Menú
             Crear qr
-            Opciones
-                extension qr
-                carpeta de destino
+            extension qr
+            carpeta de destino
             Salir
         Crear qr
             Ingresar link/texto
-            Mostrar qr generado
-
+        extension qr
+            Mostrar extension actual
+            mostrar extensiones validas
+        carpeta de destino
+            Mostrar carpeta actual
+    } HECHO
+    
     Juntar interfaz gráfica y lógica
 
     Hacer el ejecutable
