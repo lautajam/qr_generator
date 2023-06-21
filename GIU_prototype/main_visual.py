@@ -11,7 +11,6 @@ main_frame = tk.Frame(root)
 
 #--- FRAMES ---#
 
-
 # Creates the QR_gen_frame frame
 QR_gen_frame = tk.Frame(root)
 

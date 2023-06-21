@@ -1,3 +1,8 @@
+from logic.data_management import *
+from logic.qr_generator import *
+
+folder, extension = search_data()
+
 # Show Qr_gen frame
 def qr_gen(main_frame, QR_gen_frame):
     print("Now in the qr generator window.")
