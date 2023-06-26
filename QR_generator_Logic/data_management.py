@@ -5,7 +5,7 @@ exts_img = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg', 'tiff']
 
 # Reads the data.txt and extract the data it contains
 def file_lecture ():
-    file_data = open("qr_gen\data.txt", "r+")
+    file_data = open("data.txt", "r+")
     lines = file_data.readlines()
     file_data.close()
     lines = [elemento.strip('\n') for elemento in lines]
@@ -40,7 +40,7 @@ def menu(go, extension, folder, menu_var, text_qr, name_img):
                     lines[1] = folder
                 else:
                     lines[0] = folder
-                file_data = open("qr_gen\data.txt", "w")
+                file_data = open("data.txt", "w")
                 file_data.writelines(folder + "\n" + extension)
                 file_data.close()
                 go = False
@@ -78,7 +78,7 @@ def menu(go, extension, folder, menu_var, text_qr, name_img):
                     lines[0] = extension
                 else:
                     lines[1] = extension
-                file_data = open("qr_gen\data.txt", "w")
+                file_data = open("data.txt", "w")
                 file_data.writelines(folder + "\n" + extension)
                 file_data.close()
                 go = False
@@ -99,14 +99,14 @@ def search_data():
     folder = ""
     extension = "jpg"
     # Check if the QR_folder folder exists
-    if os.path.exists("qr_gen\QR_folder"):
-        folder = "qr_gen\QR_folder"
+    if os.path.exists("QR_folder"):
+        folder = "R_folder"
     # If QR_folder doesn't exists, creates it
     else:
-        os.mkdir('qr_gen\QR_folder')
-        folder = "qr_gen\QR_folder"
+        os.mkdir('QR_folder')
+        folder = "QR_folder"
     # Check if the data.txt file exists
-    if os.path.exists("qr_gen\data.txt"):
+    if os.path.exists("data.txt"):
         lines = file_lecture()
         # Check the extension and folder position in txt
         if lines[0] in exts_img:
@@ -117,7 +117,7 @@ def search_data():
             extension = lines[1]
     # If data.txt doesn't exists, creates it
     else:
-        file_data = open("qr_gen\data.txt", "w")
+        file_data = open("data.txt", "w")
         file_data.writelines(folder + "\n" + extension)
         file_data.close()
     
